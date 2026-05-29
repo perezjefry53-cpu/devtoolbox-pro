@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevToolBox Pro - Premium Developer Tools & Scripts</title>
+    <meta name="description" content="Premium developer tools, automation scripts, and web scrapers. Pay with crypto. Instant download." />
+    <style>
+        /* === CSS Reset & Base === */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #0a0e17;
+            color: #e2e8f0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        a { color: #60d4b0; text-decoration: none; }
+        a:hover { color: #8ee6c8; }
+
+        /* === Header === */
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1a2332 100%);
+            border-bottom: 1px solid #1e293b;
+            padding: 12px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60d4b0, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .logo span { color: #60d4b0; }
+        nav a {
+            color: #94a3b8;
+            margin-left: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        nav a:hover { color: #60d4b0; }
+
+        /* === Hero === */
+        .hero {
+            text-align: center;
+            padding: 80px 24px 60px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 900;
+            line-height: 1.15;
+            background: linear-gradient(135deg, #e2e8f0 0%, #60d4b0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #94a3b8;
+            margin-top: 16px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero .badge {
+            display: inline-block;
+            background: rgba(96, 212, 176, 0.1);
+            border: 1px solid rgba(96, 212, 176, 0.3);
+            color: #60d4b0;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        /* === Products Grid === */
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 800;
+            margin: 60px 24px 40px;
+        }
+        .section-title small {
+            display: block;
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 400;
+            margin-top: 8px;
+        }
+        .products {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        .product-card {
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            border-color: #60d4b0;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(96, 212, 176, 0.08);
+        }
+        .product-card .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+        .product-card h3 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .product-card p {
+            color: #94a3b8;
+            font-size: 13px;
+            flex: 1;
+            margin-bottom: 16px;
+        }
+        .product-card .features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        .product-card .features li {
+            font-size: 12px;
+            color: #64748b;
+            padding: 3px 0;
+        }
+        .product-card .features li::before {
+            content: "✓ ";
+            color: #60d4b0;
+            font-weight: 700;
+        }
+        .product-card .price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid #1e293b;
+        }
+        .product-card .price {
+            font-size: 24px;
+            font-weight: 900;
+            color: #60d4b0;
+        }
+        .product-card .price small {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 400;
+        }
+        .product-card .buy-btn {
+            background: #60d4b0;
+            color: #0a0e17;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .product-card .buy-btn:hover {
+            background: #8ee6c8;
+            transform: scale(1.02);
+        }
+
+        /* === Payment Info === */
+        .payment-section {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 24px;
+            text-align: center;
+        }
+        .payment-box {
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 32px;
+        }
+        .payment-box h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .payment-box p {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .wallet-address {
+            background: #0a0e17;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #60d4b0;
+            word-break: break-all;
+            cursor: pointer;
+            user-select: all;
+        }
+        .wallet-address small {
+            display: block;
+            color: #64748b;
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+        .payment-methods {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+        .payment-methods span {
+            background: #1e293b;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #94a3b8;
+        }
+
+        /* === Ad Space === */
+        .ad-section {
+            max-width: 728px;
+            margin: 40px auto;
+            padding: 0 24px;
+            text-align: center;
+        }
+        .ad-banner {
+            background: #111827;
+            border: 1px dashed #1e293b;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #475569;
+        }
+
+        /* === Footer === */
+        footer {
+            text-align: center;
+            padding: 32px 24px;
+            color: #475569;
+            font-size: 13px;
+            border-top: 1px solid #1e293b;
+            margin-top: 60px;
+        }
+        footer a { color: #64748b; }
+
+        /* === Modal === */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+        }
+        .modal h3 { font-size: 20px; margin-bottom: 8px; }
+        .modal p { color: #94a3b8; font-size: 14px; margin-bottom: 20px; }
+        .modal .close-btn {
+            background: #1e293b;
+            color: #94a3b8;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 16px;
+        }
+        .modal .close-btn:hover { background: #2d3a4e; }
+        .modal .wallet-address { text-align: left; }
+
+        /* === Responsive === */
+        @media (max-width: 640px) {
+            .hero { padding: 60px 16px 40px; }
+            .products { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <div class="logo">⚡ DevToolBox</div>
+            <nav>
+                <a href="#products">Tools</a>
+                <a href="#payment">Payment</a>
+                <a href="https://github.com/perezjefry53-cpu" target="_blank">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="badge">🚀 Premium Developer Tools</div>
+        <h1>Professional Scripts & Automation Tools</h1>
+        <p>Ready-to-use Python scripts, web scrapers, automation tools, and developer utilities. Pay once with crypto, use forever.</p>
+    </section>
+
+    <h2 id="products" class="section-title">
+        Premium Tools
+        <small>Lifetime access • Instant download • Full source code</small>
+    </h2>
+
+    <div class="products">
+        <!-- Product 1: Web Monitor Pro -->
+        <div class="product-card">
+            <div class="icon" style="background: rgba(96,212,176,0.1);">🔍</div>
+            <h3>Web Monitor Pro</h3>
+            <p>Professional website change detection & monitoring system. Track competitor prices, monitor content changes, get instant alerts.</p>
+            <ul class="features">
+                <li>Multi-URL monitoring</li>
+                <li>SHA-256 change detection</li>
+                <li>Telegram alerts</li>
+                <li>Continuous & one-shot modes</li>
+                <li>Zero external dependencies</li>
+            </ul>
+            <div class="price-row">
+                <span class="price">$15 <small>USD</small></span>
+                <button class="buy-btn" onclick="showModal('Web Monitor Pro', '0.006 ETH', '0x8bEF7ba775bC7657D0819440c262965F9E1218F1')">Buy Now</button>
+            </div>
+        </div>
+
+        <!-- Product 2: Crypto Price Monitor -->
+        <div class="product-card">
+            <div class="icon" style="background: rgba(59,130,246,0.1);">📊</div>
+            <h3>Crypto Price Monitor</h3>
+            <p>Real-time cryptocurrency price tracker with Telegram alerts. Monitor BTC, ETH, SOL and get notified on significant changes.</p>
+            <ul class="features">
+                <li>10+ cryptocurrencies</li>
+                <li>Custom price alerts</li>
+                <li>24h change detection</li>
+                <li>Telegram integration</li>
+                <li>Runs 24/7</li>
+            </ul>
+            <div class="price-row">
+                <span class="price">$10 <small>USD</small></span>
+                <button class="buy-btn" onclick="showModal('Crypto Price Monitor', '0.004 ETH', '0x8bEF7ba775bC7657D0819440c262965F9E1218F1')">Buy Now</button>
+            </div>
+        </div>
+
+        <!-- Product 3: Web Scraper Pro -->
+        <div class="product-card">
+            <div class="icon" style="background: rgba(139,92,246,0.1);">🕷️</div>
+            <h3>Web Scraper Pro</h3>
+            <p>Enterprise-grade web scraping toolkit. Extract data from any website with anti-detection measures and smart parsing.</p>
+            <ul class="features">
+                <li>Anti-detection headers</li>
+                <li>Smart content parsing</li>
+                <li>CSV/JSON/Excel export</li>
+                <li>Rate limiting & retry logic</li>
+                <li>Multi-page scraping</li>
+            </ul>
+            <div class="price-row">
+                <span class="price">$20 <small>USD</small></span>
+                <button class="buy-btn" onclick="showModal('Web Scraper Pro', '0.008 ETH', '0x8bEF7ba775bC7657D0819440c262965F9E1218F1')">Buy Now</button>
+            </div>
+        </div>
+
+        <!-- Product 4: Data Processing Toolkit -->
+        <div class="product-card">
+            <div class="icon" style="background: rgba(245,158,11,0.1);">⚙️</div>
+            <h3>Data Processing Toolkit</h3>
+            <p>Complete data processing suite. CSV, JSON, Excel conversion, batch processing, and data analysis pipeline.</p>
+            <ul class="features">
+                <li>CSV ↔ JSON ↔ Excel</li>
+                <li>Batch file processing</li>
+                <li>Data cleaning & validation</li>
+                <li>Report generation</li>
+                <li>Pattern-based renaming</li>
+            </ul>
+            <div class="price-row">
+                <span class="price">$12 <small>USD</small></span>
+                <button class="buy-btn" onclick="showModal('Data Processing Toolkit', '0.005 ETH', '0x8bEF7ba775bC7657D0819440c262965F9E1218F1')">Buy Now</button>
+            </div>
+        </div>
+
+        <!-- Product 5: Automation Framework -->
+        <div class="product-card">
+            <div class="icon" style="background: rgba(239,68,68,0.1);">🤖</div>
+            <h3>Automation Framework</h3>
+            <p>Python automation framework with logging, error handling, and extensible task system. Perfect for business process automation.</p>
+            <ul class="features">
+                <li>Modular task system</li>
+                <li>Comprehensive logging</li>
+                <li>Error handling & retry</li>
+                <li>Performance metrics</li>
+                <li>Extensible architecture</li>
+            </ul>
+            <div class="price-row">
+                <span class="price">$25 <small>USD</small></span>
+                <button class="buy-btn" onclick="showModal('Automation Framework', '0.01 ETH', '0x8bEF7ba775bC7657D0819440c262965F9E1218F1')">Buy Now</button>
+            </div>
+        </div>
+
+        <!-- Product 6: Full Bundle -->
+        <div class="product-card" style="border-color: #60d4b0; background: linear-gradient(135deg, #111827 0%, #0d1f1a 100%);">
+            <div class="icon" style="background: rgba(96,212,176,0.2);">🎁</div>
+            <h3>Complete Bundle</h3>
+            <p>Get ALL 5 premium tools at a massive discount. Lifetime updates, priority support, and bonus scripts included.</p>
+            <ul class="features">
+                <li>All 5 premium tools</li>
+                <li>Bonus exclusive scripts</li>
+                <li>Priority support</li>
+                <li>Lifetime updates</li>
+                <li>Commercial license</li>
+            </ul>
+            <div class="price-row">
+                <span class="price">$50 <small>USD</small></span>
+                <button class="buy-btn" onclick="showModal('Complete Bundle', '0.02 ETH', '0x8bEF7ba775bC7657D0819440c262965F9E1218F1')" style="background: #f59e0b; color: #0a0e17;">Buy Bundle</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Section -->
+    <section id="payment" class="payment-section">
+        <div class="payment-box">
+            <h3>💳 Crypto Payments</h3>
+            <p>Send the exact amount to the wallet below. After payment, email your transaction hash to receive the tool instantly.</p>
+            <div class="wallet-address">
+                <small>📩 Send ETH / USDC / USDT (ERC-20) to:</small>
+                0x8bEF7ba775bC7657D0819440c262965F9E1218F1
+            </div>
+            <div class="payment-methods">
+                <span>ETH</span>
+                <span>USDC</span>
+                <span>USDT</span>
+                <span>DAI</span>
+                <span>BTC (request address)</span>
+            </div>
+            <p style="margin-top: 16px; font-size: 13px;">
+                📧 After payment, email perezjefry53@gmail.com with your transaction hash<br>
+                or send it to <a href="https://t.me/Maxi0922_bot" target="_blank">@Maxi0922_bot</a> on Telegram
+            </p>
+        </div>
+    </section>
+
+    <!-- Ad Space -->
+    <section class="ad-section">
+        <div class="ad-banner">
+            📢 Ad Space Available — Promote your product here (contact perezjefry53@gmail.com)
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 DevToolBox Pro — Built with ❤️ for developers worldwide</p>
+        <p style="margin-top: 4px;">
+            <a href="https://github.com/perezjefry53-cpu" target="_blank">GitHub</a> • 
+            <a href="https://t.me/Maxi0922_bot" target="_blank">Telegram</a> • 
+            <a href="mailto:perezjefry53@gmail.com">Email</a>
+        </p>
+    </footer>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <h3>🛒 <span id="modalProduct">Product</span></h3>
+            <p>Send <strong id="modalPrice">0.00 ETH</strong> to the wallet below</p>
+            <div class="wallet-address" id="modalWallet">0x8bEF7ba775bC7657D0819440c262965F9E1218F1</div>
+            <p style="font-size: 13px; color: #64748b; margin-top: 16px;">
+                After payment, contact us via Telegram or email with your transaction hash.<br>
+                You'll receive the tool within 1 hour.
+            </p>
+            <button class="close-btn" onclick="document.getElementById('paymentModal').classList.remove('active')">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function showModal(product, price, wallet) {
+            document.getElementById('modalProduct').textContent = product;
+            document.getElementById('modalPrice').textContent = price;
+            document.getElementById('modalWallet').textContent = wallet;
+            document.getElementById('paymentModal').classList.add('active');
+        }
+        function closeModal(e) {
+            if (e.target === e.currentTarget) {
+                document.getElementById('paymentModal').classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
